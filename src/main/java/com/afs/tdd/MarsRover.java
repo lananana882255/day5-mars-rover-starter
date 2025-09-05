@@ -23,13 +23,13 @@ public class MarsRover {
     private void increaseLocationX() {
         this.locationX+=1;
     }
-    private void DecreaseLocationX() {
+    private void decreaseLocationX() {
         this.locationX-=1;
     }
     private void increaseLocationY() {
         this.locationY+=1;
     }
-    private void DecreaseLocationY() {
+    private void decreaseLocationY() {
         this.locationY-=1;
     }
 
@@ -42,6 +42,24 @@ public class MarsRover {
         }
         if(command.equals("R")){
             turnRight();
+        }
+        if(command.equals("B")){
+            backward();
+        }
+    }
+
+    private void backward() {
+        if(this.direction==Direction.E){
+            decreaseLocationX();
+        }
+        if(this.direction==Direction.W){
+            increaseLocationX();
+        }
+        if(this.direction==Direction.N){
+            decreaseLocationY();
+        }
+        if(this.direction==Direction.S){
+            increaseLocationY();
         }
     }
 
@@ -80,13 +98,13 @@ public class MarsRover {
             increaseLocationX();
         }
         if(this.direction==Direction.W){
-            DecreaseLocationX();
+            decreaseLocationX();
         }
         if(this.direction==Direction.N){
             increaseLocationY();
         }
         if(this.direction==Direction.S){
-            DecreaseLocationY();
+            decreaseLocationY();
         }
     }
 }
