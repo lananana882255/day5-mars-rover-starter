@@ -65,7 +65,7 @@ class MarsRoverTest {
             int initialLocationX, int initialLocationY, Direction initialDirection,
             int expectedLocationX, int expectedLocationY, Direction expectedDirection) {
         //given
-        String command="L";
+        String command="R";
         MarsRover result = new MarsRover(initialLocationX,initialLocationY,initialDirection);
 
         //when

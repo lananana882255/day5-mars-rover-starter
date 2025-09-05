@@ -40,6 +40,24 @@ public class MarsRover {
         if(command.equals("L")){
             turnLeft();
         }
+        if(command.equals("R")){
+            turnRight();
+        }
+    }
+
+    private void turnRight() {
+        if(this.direction==Direction.E){
+            this.direction=Direction.S;
+        }
+        else if(this.direction==Direction.W){
+            this.direction=Direction.N;
+        }
+        else if(this.direction==Direction.N){
+            this.direction=Direction.E;
+        }
+        else if(this.direction==Direction.S){
+            this.direction=Direction.W;
+        }
     }
 
     private void turnLeft() {
