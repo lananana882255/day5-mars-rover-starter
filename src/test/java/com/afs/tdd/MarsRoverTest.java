@@ -1,33 +1,26 @@
 package com.afs.tdd;
 
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
-import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MarsRoverTest {
-    public static Stream<Arguments> provideTestCasesForMoveCommand() {
-        return Stream.of(
-                Arguments.of(0,0,Direction.N,0,1,Direction.N),
-                Arguments.of(0,0,Direction.S,0,-1,Direction.S),
-                Arguments.of(0,0,Direction.E,1,0,Direction.E),
-                Arguments.of(0,0,Direction.W,-1,0,Direction.W)
-        );
-    }
 
     @ParameterizedTest
-    @MethodSource("provideTestCasesForMoveCommand")
+    @CsvSource({
+            "0, 0, N, 0, 1, N",
+            "0, 0, S, 0, -1, S",
+            "0, 0, W, -1, 0, W",
+            "0, 0, E, 1, 0, E"
+    })
     public void Should_return_MarsRoverLocation_when_execute_command_given_command_M(
             int initialLocationX, int initialLocationY, Direction initialDirection,
             int expectedLocationX, int expectedLocationY, Direction expectedDirection) {
         //given
         String command="M";
-        Location location = new Location(initialLocationX,initialLocationY,initialDirection);
-        MarsRover result = new MarsRover(location);
+        MarsRover result = new MarsRover(initialLocationX,initialLocationY,initialDirection);
 
         //when
         result.executeCommand(command);
