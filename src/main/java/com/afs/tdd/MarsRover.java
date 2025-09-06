@@ -33,6 +33,13 @@ public class MarsRover {
         this.locationY-=1;
     }
 
+    public  void executeBatchOfCommands(String batchOfCommands){
+        String[] commands = batchOfCommands.split("");
+        for(String command : commands){
+            executeCommand(command);
+        }
+    }
+
     public void executeCommand(String command) {
         if(command.equals("M")){
             move();

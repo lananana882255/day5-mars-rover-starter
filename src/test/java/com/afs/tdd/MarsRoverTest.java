@@ -111,7 +111,7 @@ class MarsRoverTest {
         MarsRover result = new MarsRover(initialLocationX,initialLocationY,initialDirection);
 
         //when
-        result.executeCommand(command);
+        result.executeBatchOfCommands(command);
 
         //then
         assertEquals(1,result.getLocationX());
