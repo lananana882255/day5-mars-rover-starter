@@ -1,36 +1,24 @@
 package com.afs.tdd;
 
 public class MarsRover {
-    private int locationX;
-    private int locationY;
-    private Direction direction;
+    private Location location;
+    public static final String MOVE = "M";
+    public static final String TURN_LEFT = "L";
+    public static final String TURN_RIGHT = "R";
+    public static final String BACKWARD = "B";
 
     public MarsRover(int initialLocationX,int initialLocationY,Direction initialDirection) {
-        this.locationX=initialLocationX;
-        this.locationY=initialLocationY;
-        this.direction=initialDirection;
+        this.location=new Location(initialLocationX,initialLocationY,initialDirection);
     }
 
     public int getLocationX() {
-        return this.locationX;
+        return this.location.getLocationX();
     }
     public int getLocationY() {
-        return this.locationY;
+        return this.location.getLocationY();
     }
     public Direction getDirection() {
-        return this.direction;
-    }
-    private void increaseLocationX() {
-        this.locationX+=1;
-    }
-    private void decreaseLocationX() {
-        this.locationX-=1;
-    }
-    private void increaseLocationY() {
-        this.locationY+=1;
-    }
-    private void decreaseLocationY() {
-        this.locationY-=1;
+        return this.location.getDirection();
     }
 
     public  void executeBatchOfCommands(String batchOfCommands){
@@ -41,77 +29,27 @@ public class MarsRover {
     }
 
     public void executeCommand(String command) {
-        if(command.equals("M")){
-            move();
-        }
-        if(command.equals("L")){
-            turnLeft();
-        }
-        if(command.equals("R")){
-            turnRight();
-        }
-        if(command.equals("B")){
-            backward();
+        switch (command) {
+            case MOVE -> move();
+            case TURN_LEFT -> turnLeft();
+            case TURN_RIGHT -> turnRight();
+            case BACKWARD -> backward();
         }
     }
 
     private void backward() {
-        if(this.direction==Direction.E){
-            decreaseLocationX();
-        }
-        if(this.direction==Direction.W){
-            increaseLocationX();
-        }
-        if(this.direction==Direction.N){
-            decreaseLocationY();
-        }
-        if(this.direction==Direction.S){
-            increaseLocationY();
-        }
+        this.location.backward();
     }
 
     private void turnRight() {
-        if(this.direction==Direction.E){
-            this.direction=Direction.S;
-        }
-        else if(this.direction==Direction.W){
-            this.direction=Direction.N;
-        }
-        else if(this.direction==Direction.N){
-            this.direction=Direction.E;
-        }
-        else if(this.direction==Direction.S){
-            this.direction=Direction.W;
-        }
+        this.location.turnRight();
     }
 
     private void turnLeft() {
-        if(this.direction==Direction.E){
-            this.direction=Direction.N;
-        }
-        else if(this.direction==Direction.W){
-            this.direction=Direction.S;
-        }
-        else if(this.direction==Direction.N){
-            this.direction=Direction.W;
-        }
-        else if(this.direction==Direction.S){
-            this.direction=Direction.E;
-        }
+        this.location.turnLeft();
     }
 
     private void move() {
-        if(this.direction==Direction.E){
-            increaseLocationX();
-        }
-        if(this.direction==Direction.W){
-            decreaseLocationX();
-        }
-        if(this.direction==Direction.N){
-            increaseLocationY();
-        }
-        if(this.direction==Direction.S){
-            decreaseLocationY();
-        }
+        this.location.move();
     }
 }
