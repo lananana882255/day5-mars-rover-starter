@@ -1,5 +1,6 @@
 package com.afs.tdd;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -98,5 +99,23 @@ class MarsRoverTest {
         assertEquals(expectedLocationX,result.getLocationX());
         assertEquals(expectedLocationY,result.getLocationY());
         assertEquals(expectedDirection,result.getDirection());
+    }
+
+    @Test
+    public void Should_return_MarsRoverLocation_when_execute_command_given_commands() {
+        //given
+        String command="MLBRM";
+        int initialLocationX=0;
+        int initialLocationY=0;
+        Direction initialDirection=Direction.N;
+        MarsRover result = new MarsRover(initialLocationX,initialLocationY,initialDirection);
+
+        //when
+        result.executeCommand(command);
+
+        //then
+        assertEquals(1,result.getLocationX());
+        assertEquals(2,result.getLocationY());
+        assertEquals(Direction.N,result.getDirection());
     }
 }
