@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MarsRoverTest {
 
@@ -115,5 +116,21 @@ class MarsRoverTest {
         assertEquals(1,result.getLocationX());
         assertEquals(2,result.getLocationY());
         assertEquals(Direction.N,result.getDirection());
+    }
+
+    @Test
+    public void Should_throw_exception_when_executeCommand_given_invalid_command() {
+        // given
+        String invalidCommand = "X";
+        int initialLocationX=0;
+        int initialLocationY=0;
+        Direction initialDirection=Direction.N;
+        MarsRover rover = new MarsRover(initialLocationX, initialLocationY, initialDirection);
+
+        // when & then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
+                () -> rover.executeCommand(invalidCommand));
+
+        assertEquals("Invalid command: X. Only M, L, R, B are supported.", exception.getMessage());
     }
 }
