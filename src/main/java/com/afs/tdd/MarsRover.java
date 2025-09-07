@@ -34,6 +34,7 @@ public class MarsRover {
             case TURN_LEFT -> turnLeft();
             case TURN_RIGHT -> turnRight();
             case BACKWARD -> backward();
+            default -> throw new IllegalArgumentException("Invalid command: " + command + ". Only M, L, R, B are supported.");
         }
     }
 
